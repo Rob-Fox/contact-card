@@ -1,0 +1,100 @@
+<html>
+<head>
+	<title>jQuery</title>
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+    <style>
+        .form {
+            display: inline-block;
+            text-align: center;
+        }
+        span{
+            display:block;
+            text-align: left;
+        }
+        #main_span{
+            margin-top:25px;
+            margin-left:25px;
+            display:inline-block;
+            vertical-align: top;
+            text-align: left;
+        }
+        input[type=text]{
+            width: 150px;
+            height:25px;
+        }
+        #description {
+            vertical-align: middle;
+            width:150px;
+            height:100px;
+        }
+        p{
+            /* display:inline-block; */
+            word-wrap: break-word;
+            width: 190px;
+        }
+        .desc div{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+            display:inline-block;
+            /* height: 150px; */
+            width: 200px;
+            /* padding:1px; */
+        }
+        .desc{
+            /* width:max-content; */
+            /* height:100px; */
+            display: inline-block;
+            /* word-wrap:normal; */
+        }
+        #dynamic_div{
+            display:inline-block;
+            vertical-align: top;
+            text-align: right;
+        }
+        #dynamic_div div{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+        }
+        .first{
+            font-size: 16pt;
+            text-align: center;
+        }
+        .desc{
+            font-size:14pt;
+            text-align: center;
+        }
+        .clickhere{
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).on("click", "#submit", function () {
+            $("#dynamic_div").append("<div>" + "<p class='first'>" + $("#first").val() + "</p>" + "<p class='first'>" + $("#last").val() + "</p>" + "<p class='clickhere'>Click here for description</p>" + "<p class='desc'>" + $("#description").val() + "</p>"+"</div>")
+            $(".desc").hide();    
+        })
+        $(document).on("click", ".clickhere", function(){
+            $(this).hide();
+            // $(".clickhere").hide();
+            $(this).siblings().toggle();  
+        })
+        $(document).on("click", ".desc", function () {
+            $(".first").show();
+            $(".clickhere").show();
+            $(".desc").hide();
+        })
+	</script>
+</head>
+<body>
+    <span id="main_span">
+        <span>First Name: <form class="form"><input id="first" type="text" value="Rob"></form></span>
+        <span>Last Name: <form class="form"><input id="last" type="text" value="Fox"></form></span>
+        <span>Description: <form class="form" id="des"><textarea id="description" value="Type in a brief description of yourself"></textarea></form></span>
+        <button id="submit">Submit</button>
+    </span>
+    <div id="dynamic_div">
+
+    </div>
+</body>
+</html>
